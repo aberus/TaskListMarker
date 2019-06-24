@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28307.645
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskListMarker", "TaskListMarker\TaskListMarker.csproj", "{3DF45DDD-0A6C-4E92-B232-C4FC2350BF9E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskListMarker.Mac", "TaskListMarker.Mac\TaskListMarker.Mac.csproj", "{D327C3B6-BCC3-48BB-9F73-9F038E93D694}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{3DF45DDD-0A6C-4E92-B232-C4FC2350BF9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3DF45DDD-0A6C-4E92-B232-C4FC2350BF9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3DF45DDD-0A6C-4E92-B232-C4FC2350BF9E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D327C3B6-BCC3-48BB-9F73-9F038E93D694}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D327C3B6-BCC3-48BB-9F73-9F038E93D694}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D327C3B6-BCC3-48BB-9F73-9F038E93D694}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D327C3B6-BCC3-48BB-9F73-9F038E93D694}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
