@@ -5,6 +5,7 @@ using System.Windows;
 #else
 using System;
 using Microsoft.VisualStudio.Core.Imaging;
+using Microsoft.VisualStudio.Imaging;
 #endif
 
 namespace Aberus.TaskListMarker
@@ -27,8 +28,8 @@ namespace Aberus.TaskListMarker
         {
             if (tag is TaskListTag)
             {
-                var imageId = new ImageId(new Guid("{ae27a6b0-e345-4288-96df-5eaf394ee369}"), 2852/*3063KnownImageIds.TaskList*/);
-                var image = (AppKit.NSImage)imageService.GetImage(imageId);
+                var imageId = new ImageId(new Guid("{ae27a6b0-e345-4288-96df-5eaf394ee369}"), /*KnownImageIds.TaskList*/2852);
+                var image = (AppKit.NSImage)imageService.GetImage(imageId); 
                 var imageView = AppKit.NSImageView.FromImage(image);
                 imageView.SetFrameSize(imageView.FittingSize);
                 return imageView;

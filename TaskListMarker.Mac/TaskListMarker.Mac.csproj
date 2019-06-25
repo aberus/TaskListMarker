@@ -59,9 +59,11 @@
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
+    <Reference Include="Microsoft.VisualStudio.ImageCatalog">
+      <HintPath>..\..\..\..\..\Applications\Visual Studio.app\Contents\Resources\lib\monodevelop\bin\Microsoft.VisualStudio.ImageCatalog.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\AddinInfo.cs" />
     <Compile Include="..\TaskListMarker\StringExtensions.cs">
       <Link>StringExtensions.cs</Link>
@@ -89,6 +91,9 @@
     </Compile>
     <Compile Include="..\TaskListMarker\TaskListTag.cs">
       <Link>TaskListTag.cs</Link>
+    </Compile>
+    <Compile Include="..\TaskListMarker\Properties\AssemblyInfo.cs">
+      <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
   </ItemGroup>
   <ItemGroup>

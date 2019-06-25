@@ -1,39 +1,11 @@
-﻿//
-// AddinInfo.cs
-//
-// Author:
-//       Mikayla Hutchinson <m.j.hutchinson@gmail.com>
-//
-// Copyright (c) 2017 Microsoft Corp.
-//
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-//
-// The above copyright notice and this permission notice shall be included in
-// all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-// THE SOFTWARE.
-using System;
-using Mono.Addins;
+﻿using Mono.Addins;
 using Mono.Addins.Description;
 
 [assembly: Addin(
-    "TaskListMarker.Mac",
-    Namespace = "TaskListMarker.Mac",
-    Version = "1.0"
+    "TaskListMarker",
+    Namespace = "Aberus.TaskListMarker",
+    Version = "0.1"
 )]
 
-[assembly: AddinName("TaskListMarker.Mac")]
-[assembly: AddinCategory("IDE extensions")]
-[assembly: AddinDescription("TaskListMarker.Mac")]
-[assembly: AddinAuthor("Mikayla Hutchinson")]
+[assembly: AddinName("Task List Marker")]
+[assembly: AddinCategory("IDE extensions")][assembly: AddinDescription("Marks all Task (ToDo statements) from Task List in the Visual Studio editor window")][assembly: AddinAuthor("Aleksander Berus")][assembly: AddinUrl("https://github.com/aberus/TaskListMarker")]
