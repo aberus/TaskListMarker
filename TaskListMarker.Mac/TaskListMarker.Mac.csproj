@@ -61,6 +61,7 @@
     <Reference Include="System.Xml.Linq" />
     <Reference Include="Microsoft.VisualStudio.ImageCatalog">
       <HintPath>..\..\..\..\..\Applications\Visual Studio.app\Contents\Resources\lib\monodevelop\bin\Microsoft.VisualStudio.ImageCatalog.dll</HintPath>
+      <Private>False</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
