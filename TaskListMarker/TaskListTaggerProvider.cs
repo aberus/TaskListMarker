@@ -40,10 +40,11 @@ namespace Aberus.TaskListMarker
             {
                 throw new ArgumentNullException("buffer");
             }
+
 #if !MAC
-            return new TaskListTagger(registry, (DTE2)serviceProvider.GetService(typeof(SDTE))) as ITagger<T>;
+            return buffer.Properties.GetOrCreateSingletonProperty(() => new TaskListTagger(buffer, registry, (DTE2)serviceProvider.GetService(typeof(SDTE))) as ITagger<T>);
 #else
-            return new TaskListTagger(registry) as ITagger<T>;
+            return buffer.Properties.GetOrCreateSingletonProperty(() => new TaskListTagger(buffer, registry) as ITagger<T>);
 #endif
         }
     }

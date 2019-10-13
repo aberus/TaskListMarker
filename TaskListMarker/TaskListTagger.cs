@@ -24,7 +24,7 @@ namespace Aberus.TaskListMarker
         private IReadOnlyList<string> tokens;
 
 #if MAC
-        public TaskListTagger(IClassificationTypeRegistryService registry)
+        public TaskListTagger(ITextBuffer buffer, IClassificationTypeRegistryService registry) : this(buffer)
         {
             LoadTokens();
             CommentTag.SpecialCommentTagsChanged += (s,e) => LoadTokens();
@@ -36,10 +36,16 @@ namespace Aberus.TaskListMarker
             tokens = CommentTag.SpecialCommentTags.Select(x => x.Tag).ToReadOnlyList();
         }
 #else
-        public TaskListTagger(IClassificationTypeRegistryService registry, DTE2 dte)
+        public TaskListTagger(ITextBuffer buffer, IClassificationTypeRegistryService registry, DTE2 dte) : this(buffer)
         {
             LoadTokens(dte);
             this.registry = registry;
+        }
+
+
+        private TaskListTagger(ITextBuffer buffer)
+        {
+            buffer.Changed += (sender, args) => OnBufferChanged(args);
         }
 
         private void LoadTokens(DTE2 dte)
@@ -59,24 +65,63 @@ namespace Aberus.TaskListMarker
         /// <returns>The list of <see cref="TaskListTag"/> TagSpans.</returns>
         IEnumerable<ITagSpan<TaskListTag>> ITagger<TaskListTag>.GetTags(NormalizedSnapshotSpanCollection spans)
         {
-            foreach (SnapshotSpan curSpan in spans)
+            foreach (var line in GetIntersectingLines(spans))
             {
                 foreach (var token in tokens)
                 {
                     var todoLineRegex = new Regex($@"\/\/\s*{token}\b", RegexOptions.IgnoreCase | RegexOptions.Compiled);
 
-                    string text = curSpan.GetText();
+                    string text = line.GetText();
                     var match = todoLineRegex.Match(text);
                     if (match.Success)
                     {
-                        SnapshotSpan todoSpan = new SnapshotSpan(curSpan.Snapshot, new Span(curSpan.Start + match.Index, curSpan.Length-1));
+                        var todoSpan = new SnapshotSpan(line.Snapshot, new Span(line.Start + match.Index, line.Length));
                         yield return new TagSpan<TaskListTag>(todoSpan, new TaskListTag(registry.GetClassificationType("TaskList")));
-                        //TagsChanged.Invoke(this, new SnapshotSpanEventArgs(todoSpan));
                     }
                 }
             }
         }
 
         public event EventHandler<SnapshotSpanEventArgs> TagsChanged;
+
+        IEnumerable<ITextSnapshotLine> GetIntersectingLines(NormalizedSnapshotSpanCollection spans)
+        {
+            if (spans.Count == 0)
+                yield break;
+
+            int lastVisitedLineNumber = -1;
+            var snapshot = spans[0].Snapshot;
+
+            foreach (var span in spans)
+            {
+                int firstLineNumber = snapshot.GetLineNumberFromPosition(span.Start);
+                int lastLineNumber = snapshot.GetLineNumberFromPosition(span.End);
+
+                for (int i = Math.Max(lastVisitedLineNumber, firstLineNumber); i <= lastLineNumber; i++)
+                {
+                    yield return snapshot.GetLineFromLineNumber(i);
+                }
+
+                lastVisitedLineNumber = lastLineNumber;
+            }
+        }
+
+        /// <summary>
+        /// Handle buffer changes. The default implementation expands changes to full lines and sends out
+        /// a <see cref="TagsChanged"/> event for these lines.
+        /// </summary>
+        /// <param name="args">The buffer change arguments.</param>
+        protected virtual void OnBufferChanged(TextContentChangedEventArgs args)
+        {
+            var snapshot = args.After;
+
+            foreach (var change in args.Changes)
+            {
+                var startLine = snapshot.GetLineFromPosition(change.NewPosition);
+                var endLine = (change.NewEnd <= startLine.End) ? startLine : snapshot.GetLineFromPosition(change.NewEnd);
+
+                TagsChanged?.Invoke(this, new SnapshotSpanEventArgs(new SnapshotSpan(startLine.Start, endLine.End)));
+            }
+        }
     }
 }

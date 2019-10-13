@@ -10,7 +10,7 @@ namespace Aberus.TaskListMarker
     [Export(typeof(EditorFormatDefinition))]
     [ClassificationType(ClassificationTypeNames = "TaskList")]
     [Name("TaskListTagText")]
-    [UserVisible(true)]
+    [UserVisible(false)]
     [Order(After = Priority.High)]
     internal sealed class TaskListTagClassificationFormatDefinition : ClassificationFormatDefinition
     {
