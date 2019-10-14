@@ -8,6 +8,6 @@ namespace Aberus.TaskListMarker
     {
         [Export(typeof(ClassificationTypeDefinition))]
         [Name("TaskList")]
-        internal static ClassificationTypeDefinition todo;
+        internal static ClassificationTypeDefinition tasklist;
     }
 }

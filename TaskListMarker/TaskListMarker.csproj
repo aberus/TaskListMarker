@@ -93,8 +93,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClassificationSpanExtensions.cs" />
-    <Compile Include="Classifier.cs" />
-    <Compile Include="ClassifierProvider.cs" />
+    <Compile Include="TaskListClassifier.cs" />
+    <Compile Include="TaskListClassifierProvider.cs" />
     <Compile Include="ListExtensions.cs" />
     <Compile Include="StringExtensions.cs" />
     <Compile Include="TaskListTag.cs" />

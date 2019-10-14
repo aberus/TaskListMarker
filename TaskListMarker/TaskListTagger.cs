@@ -67,16 +67,16 @@ namespace Aberus.TaskListMarker
         {
             foreach (var line in GetIntersectingLines(spans))
             {
-                foreach (var token in tokens)
+                foreach (string token in tokens)
                 {
-                    var todoLineRegex = new Regex($@"\/\/\s*{token}\b", RegexOptions.IgnoreCase | RegexOptions.Compiled);
+                    var todoLineRegex = new Regex($@"\/\/\s*{token}\b", RegexOptions.IgnoreCase);
 
                     string text = line.GetText();
                     var match = todoLineRegex.Match(text);
                     if (match.Success)
                     {
-                        var todoSpan = new SnapshotSpan(line.Snapshot, new Span(line.Start + match.Index, line.Length));
-                        yield return new TagSpan<TaskListTag>(todoSpan, new TaskListTag(registry.GetClassificationType("TaskList")));
+                        var todoSpan = new SnapshotSpan(line.Snapshot, new Span(line.Start + match.Index, line.Length - match.Index));
+                        yield return new TagSpan<TaskListTag>(todoSpan, new TaskListTag());
                     }
                 }
             }

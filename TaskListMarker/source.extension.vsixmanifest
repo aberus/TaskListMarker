@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011">
     <Metadata>
-        <Identity Id="cac72f1f-5e8d-451d-9f04-06ee588d7db7" Version="0.1.0" Language="en-US" Publisher="Aleksander Berus" />
+        <Identity Id="cac72f1f-5e8d-451d-9f04-06ee588d7db7" Version="0.2.0" Language="en-US" Publisher="Aleksander Berus" />
         <DisplayName>Task List Marker</DisplayName>
         <Description xml:space="preserve">Marks all Task (ToDo statements from Task List) in the Visual Studio editor window</Description>
         <MoreInfo>https://github.com/aberus/TaskListMarker</MoreInfo>
